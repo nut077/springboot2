@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Title</title>
+  <link th:href="@{/public/css/petclinic.css}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<table>
+  <thead>
+  <tr style="font-weight: bold" bgcolor="#90ee90">
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+  </tr>
+  </thead>
+  <tbody>
+  <th:block th:each="owner,line : ${owners}">
+    <tr th:bgcolor="${line.odd} ? white: lightgray">
+      <td th:text="${owner.getId()}"></td>
+      <td th:text="${owner.getFirstName()}"></td>
+      <td th:text="${owner.getLastName()}"></td>
+    </tr>
+  </th:block>
+  </tbody>
+</table>
+</body>
+</html>
