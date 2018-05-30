@@ -15,23 +15,23 @@ public class OwnerRepositoryInMemoryImpl implements OwnerRepository {
     public OwnerRepositoryInMemoryImpl() {
         Owner owner1 = new Owner();
         owner1.setId(1L);
-        owner1.setFirstName("Kenan");
-        owner1.setLastName("Sevindik");
+        owner1.setFirstName("Nut");
+        owner1.setLastName("Freedom");
 
         Owner owner2 = new Owner();
         owner2.setId(2L);
-        owner2.setFirstName("Muammer");
-        owner2.setLastName("Yücel");
+        owner2.setFirstName("Arashi");
+        owner2.setLastName("Freedom");
 
         Owner owner3 = new Owner();
         owner3.setId(3L);
-        owner3.setFirstName("Hümeyra");
-        owner3.setLastName("Sevindik");
+        owner3.setFirstName("Nut");
+        owner3.setLastName("Eiei");
 
         Owner owner4 = new Owner();
         owner4.setId(4L);
-        owner4.setFirstName("Salim");
-        owner4.setLastName("Sevindik");
+        owner4.setFirstName("Arashi");
+        owner4.setLastName("Eiei");
 
         ownerMap.put(owner1.getId(), owner1);
         ownerMap.put(owner2.getId(), owner2);

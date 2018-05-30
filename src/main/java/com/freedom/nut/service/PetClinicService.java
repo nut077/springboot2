@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface PetClinicService {
     List<Owner> findOwners();
-    List<Owner> findOwners(String lastName);
+    List<Owner> findByFirstName(String firstName);
+    List<Owner> findByLastName(String lastName);
     Owner findOwner(Long id) throws OwnerNotFoundException;
     void createOwner(Owner owner);
     void updateOwner(Owner owner);

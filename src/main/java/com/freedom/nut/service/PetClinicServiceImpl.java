@@ -24,7 +24,12 @@ public class PetClinicServiceImpl implements PetClinicService {
     }
 
     @Override
-    public List<Owner> findOwners(String lastName) {
+    public List<Owner> findByFirstName(String firstName) {
+        return ownerRepository.findByFirstName(firstName);
+    }
+
+    @Override
+    public List<Owner> findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName);
     }
 
