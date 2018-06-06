@@ -1,7 +1,6 @@
 package com.freedom.nut.service;
 
 import com.freedom.nut.dao.OwnerRepository;
-import com.freedom.nut.dao.PetRepository;
 import com.freedom.nut.exception.OwnerNotFoundException;
 import com.freedom.nut.model.Owner;
 import org.springframework.beans.factory.annotation.Autowired;

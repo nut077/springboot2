@@ -36,4 +36,13 @@ public class PetClinicRestControllerTest {
         List<String> firstName = body.stream().map(fn -> fn.get("firstName")).collect(Collectors.toList());
         MatcherAssert.assertThat(firstName, Matchers.containsInAnyOrder("Nut", "Nut"));
     }
+
+    @Test
+    public void testGetOwners() {
+        ResponseEntity<List> response = restTemplate.getForEntity("http://localhost:8080/rest/owners", List.class);
+        MatcherAssert.assertThat(response.getStatusCodeValue(), Matchers.equalTo(200));
+        List<Map<String, String>> body = response.getBody();
+        List<String> firstName = body.stream().map(val -> val.get("firstName")).collect(Collectors.toList());
+        MatcherAssert.assertThat(firstName, Matchers.containsInAnyOrder("Nut", "Arashi", "Nut", "Arashi"));
+    }
 }
