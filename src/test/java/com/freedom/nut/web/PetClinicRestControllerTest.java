@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -18,6 +19,18 @@ public class PetClinicRestControllerTest {
     @Before
     public void setUp() {
         restTemplate = new RestTemplate();
+    }
+
+    @Test
+    public void testCreateOwner() {
+        Owner owner = new Owner();
+        owner.setFirstName("Eiei");
+        owner.setLastName("Freedom");
+        URI location = restTemplate.postForLocation("http://localhost:8080/rest/owner", owner);
+        Owner owner1 = restTemplate.getForObject(location, Owner.class);
+
+        MatcherAssert.assertThat(owner1.getFirstName(), Matchers.equalTo(owner.getFirstName()));
+        MatcherAssert.assertThat(owner1.getLastName(), Matchers.equalTo(owner.getLastName()));
     }
 
     @Test

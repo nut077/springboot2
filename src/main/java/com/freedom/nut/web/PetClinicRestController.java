@@ -4,9 +4,12 @@ import com.freedom.nut.exception.OwnerNotFoundException;
 import com.freedom.nut.model.Owner;
 import com.freedom.nut.service.PetClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,6 +20,18 @@ public class PetClinicRestController {
     @Autowired
     public PetClinicRestController(PetClinicService petClinicService) {
         this.petClinicService = petClinicService;
+    }
+
+    @PostMapping("/owner")
+    public ResponseEntity<URI> createOwner(@RequestBody Owner owner) {
+        try {
+            petClinicService.createOwner(owner);
+            Long id = owner.getId();
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(id).toUri();
+            return ResponseEntity.created(location).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/owners")
