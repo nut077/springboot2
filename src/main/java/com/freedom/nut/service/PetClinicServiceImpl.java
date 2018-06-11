@@ -1,38 +1,53 @@
 package com.freedom.nut.service;
 
 import com.freedom.nut.dao.OwnerRepository;
+import com.freedom.nut.dao.PetRepository;
 import com.freedom.nut.exception.OwnerNotFoundException;
 import com.freedom.nut.model.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class PetClinicServiceImpl implements PetClinicService {
     private OwnerRepository ownerRepository;
+    private PetRepository petRepository;
 
     @Autowired
-    public PetClinicServiceImpl(OwnerRepository ownerRepository) {
+    public void setOwnerRepository(OwnerRepository ownerRepository) {
         this.ownerRepository = ownerRepository;
     }
 
+    @Autowired
+    public void setPetRepository(PetRepository petRepository) {
+        this.petRepository = petRepository;
+    }
+
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Owner> findOwners() {
         return ownerRepository.findAll();
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Owner> findByFirstName(String firstName) {
         return ownerRepository.findByFirstName(firstName);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Owner> findByLastName(String lastName) {
         return ownerRepository.findByLastName(lastName);
     }
 
     @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Owner findOwner(Long id) throws OwnerNotFoundException {
         Owner owner = ownerRepository.findById(id);
         if (owner == null) {
@@ -53,6 +68,7 @@ public class PetClinicServiceImpl implements PetClinicService {
 
     @Override
     public void deleteOwner(Long id) {
+        petRepository.delete(id);
         ownerRepository.delete(id);
     }
 }

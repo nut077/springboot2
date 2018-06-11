@@ -17,6 +17,20 @@ public class PetClinicController {
         this.petClinicService = petClinicService;
     }
 
+    @GetMapping({"/", "/index"})
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
     @GetMapping("/pcs")
     @ResponseBody
     public String welcome() {
