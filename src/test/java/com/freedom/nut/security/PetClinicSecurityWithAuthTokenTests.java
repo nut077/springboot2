@@ -34,5 +34,4 @@ public class PetClinicSecurityWithAuthTokenTests {
     public void testFindOwners() {
         petClinicService.findOwners();
     }
-
 }

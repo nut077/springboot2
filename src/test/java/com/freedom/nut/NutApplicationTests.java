@@ -12,5 +12,4 @@ public class NutApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }
