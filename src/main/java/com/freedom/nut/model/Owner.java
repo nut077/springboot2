@@ -19,7 +19,7 @@ public class Owner {
     private Long id;
     private String firstName;
     private String lastName;
-    @OneToMany(mappedBy="owner")
+    @OneToMany(mappedBy = "owner")
     @JsonIgnore
     private Set<Pet> pets = new HashSet<>();
 
