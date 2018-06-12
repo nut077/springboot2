@@ -24,7 +24,6 @@ public class PetClinicSecurityWithAuthTokenTests {
         TestingAuthenticationToken auth = new TestingAuthenticationToken("user1", "secret", "ROLE_USER");
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
-
     @After
     public void tearDown() {
         SecurityContextHolder.clearContext();
