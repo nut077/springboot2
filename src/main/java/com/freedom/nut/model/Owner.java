@@ -1,7 +1,8 @@
 package com.freedom.nut.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_owner")
+@NoArgsConstructor
 @Data
 public class Owner {
     @Id
@@ -17,6 +19,12 @@ public class Owner {
     private Long id;
     private String firstName;
     private String lastName;
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy="owner")
+    @JsonIgnore
     private Set<Pet> pets = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Owner [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+    }
 }
